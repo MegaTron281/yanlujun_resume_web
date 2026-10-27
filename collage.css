@@ -166,6 +166,13 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
 .interview-play[hidden] { display: none; }
 .interview-play-icon { display: grid; place-items: center; width: 98px; height: 98px; padding-left: 6px; border: 3px solid var(--ink); border-radius: 50%; background: var(--yellow); font-size: 43px; transition: transform .4s cubic-bezier(.16,1.5,.32,1); }
 .interview-play small { display: block; margin-top: 5px; font: 700 18px Georgia, serif; }
+.interview-unavailable { position: absolute; inset: 0; display: grid; place-content: center; gap: 10px; margin: 0; padding: 28px; color: #f7f0e3; background: repeating-linear-gradient(45deg, #1b1916 0 14px, #221f1b 14px 28px); font-size: 15px; line-height: 1.6; text-align: center; }
+.interview-unavailable b { font-size: 18px; letter-spacing: -.01em; }
+.interview-unavailable b small { display: block; margin-top: 5px; font: 700 14px Georgia, serif; opacity: .82; }
+.interview-unavailable code { padding: 1px 5px; border-radius: 3px; background: #2f2b26; font-size: .92em; }
+.interview-unavailable a { color: var(--yellow); text-decoration: underline; }
+.interview-stage.is-unavailable .interview-player, .interview-stage.is-unavailable .interview-play { display: none; }
+.interview-link[hidden] { display: none; }
 
 .projects-section { background: #f8f2e6; border-block: 2px solid var(--ink); }
 .projects-heading { align-items: end; }

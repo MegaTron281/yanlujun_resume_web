@@ -3,12 +3,34 @@ const dialogImage = dialog?.querySelector('img');
 const dialogCaption = dialog?.querySelector('figcaption');
 const interviewPlayer = document.querySelector('.interview-player');
 const interviewPlay = document.querySelector('.interview-play');
+const interviewStage = document.querySelector('.interview-stage');
+const interviewSource = interviewPlayer?.querySelector('source');
+
+function showInterviewUnavailable() {
+  if (!interviewStage) return;
+  interviewStage.classList.add('is-unavailable');
+  interviewStage.querySelector('.interview-unavailable')?.removeAttribute('hidden');
+  document.querySelector('.interview-link')?.setAttribute('hidden', '');
+}
+
+const interviewSrc = interviewSource?.getAttribute('src');
+if (interviewSrc) {
+  fetch(interviewSrc, { method: 'HEAD' })
+    .then((response) => {
+      if (!response.ok) showInterviewUnavailable();
+    })
+    .catch(() => {
+      // file:// 直接打开或离线时无法探测，保留原始播放器。
+    });
+}
+interviewSource?.addEventListener('error', showInterviewUnavailable);
 
 interviewPlay?.addEventListener('click', () => {
   if (!interviewPlayer) return;
   interviewPlay.hidden = true;
   interviewPlayer.play().catch(() => {
-    // Native controls remain available if the browser cannot start playback.
+    // 浏览器无法开始播放时（如视频文件缺失），退回提示文案。
+    if (interviewPlayer.error || interviewPlayer.networkState === 3) showInterviewUnavailable();
   });
 });
 
