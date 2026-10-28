@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950" role="img" aria-labelledby="title desc">
+  <title id="title">双电机视觉云台系统框图</title>
+  <desc id="desc">简约剪纸风格系统框图：K230 从图像生成双轴目标角速度，经 UART 传给 STM32H723；STM32 融合 BMI088 反馈并通过 CAN 控制偏航和俯仰电机。</desc>
+  <defs>
+    <style>
+      .ink { fill: #25302d; }
+      .muted { fill: #59645d; }
+      .title { font: 700 36px 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; }
+      .head { font: 700 25px 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; }
+      .block { font: 700 21px 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; }
+      .body { font: 17px 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; }
+      .note { font: 15px 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; }
+      .tiny { font: 13px 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; letter-spacing: 1px; }
+      .wire { fill: none; stroke: #3d4843; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; marker-end: url(#arrow); }
+      .return { fill: none; stroke: #9b5842; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; marker-end: url(#arrowRust); }
+      .sense { fill: none; stroke: #668078; stroke-width: 2.5; stroke-dasharray: 8 6; marker-end: url(#arrowSage); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" markerWidth="9" markerHeight="9" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3d4843"/></marker>
+    <marker id="arrowRust" viewBox="0 0 10 10" markerWidth="9" markerHeight="9" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#9b5842"/></marker>
+    <marker id="arrowSage" viewBox="0 0 10 10" markerWidth="9" markerHeight="9" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#668078"/></marker>
+  </defs>
+
+  <rect width="1600" height="950" fill="#eeeae1"/>
+  <path d="M0 118H1600" stroke="#c9c3b7" stroke-width="1"/>
+  <text x="72" y="70" class="title ink">双电机视觉云台</text>
+  <text x="73" y="100" class="body muted">系统框图</text>
+  <text x="1528" y="70" class="tiny muted" text-anchor="end">K230  /  STM32H723</text>
+
+  <!-- 两张错位的纸片：左右控制单元 -->
+  <path d="M78 165L590 169L593 811L76 815Z" fill="#c9bfb0"/>
+  <path d="M68 155L581 159L584 800L70 806Z" fill="#e8dcc6"/>
+  <path d="M938 165L1545 161L1548 812L936 816Z" fill="#c5beb0"/>
+  <path d="M929 153L1535 155L1538 802L931 806Z" fill="#dbe4d8"/>
+
+  <path d="M96 232H554M958 232H1510" stroke="#837f72" stroke-width="1.5"/>
+  <text x="98" y="211" class="head ink">K230</text>
+  <text x="175" y="211" class="body muted">视觉 / 人机交互</text>
+  <text x="960" y="211" class="head ink">STM32H723</text>
+  <text x="1154" y="211" class="body muted">实时控制 / 电机驱动</text>
+
+  <!-- K230: 采集和交互 -->
+  <rect x="115" y="281" width="185" height="91" fill="#bdb1a2"/>
+  <path d="M108 272L294 272L292 365L108 364Z" fill="#fbf8f0"/>
+  <text x="130" y="308" class="block ink">摄像头</text>
+  <text x="130" y="340" class="body muted">640 × 480</text>
+
+  <rect x="344" y="281" width="208" height="91" fill="#bdb1a2"/>
+  <path d="M337 272L542 272L545 364L338 365Z" fill="#fbf8f0"/>
+  <text x="358" y="308" class="block ink">触摸屏 / 按键</text>
+  <text x="358" y="340" class="body muted">模式切换与使能</text>
+
+  <rect x="116" y="450" width="432" height="100" fill="#bdb1a2"/>
+  <path d="M108 440L540 441L541 542L110 542Z" fill="#fbf8f0"/>
+  <text x="130" y="478" class="block ink">追踪目标</text>
+  <text x="130" y="514" class="body muted">CAM / 矩形 / 色块 / 人脸</text>
+
+  <rect x="116" y="635" width="432" height="104" fill="#bdb1a2"/>
+  <path d="M108 625L541 625L540 731L110 730Z" fill="#f1d6bc"/>
+  <text x="130" y="663" class="block ink">视觉外环</text>
+  <text x="130" y="698" class="body muted">像素误差 → 平滑与死区 → 目标角速度</text>
+
+  <path class="wire" d="M201 365V440"/>
+  <path class="wire" d="M440 365V440"/>
+  <path class="wire" d="M325 542V625"/>
+
+  <!-- 通信纸条：细节压缩为可读的四行 -->
+  <path d="M665 350L896 348L900 610L668 614Z" fill="#c6bbb0"/>
+  <path d="M654 339L885 341L889 600L656 603Z" fill="#fbf8f0"/>
+  <path d="M677 402H865" stroke="#aa6b4b" stroke-width="4"/>
+  <text x="678" y="382" class="head ink">UART</text>
+  <text x="678" y="448" class="body ink">K230 UART2</text>
+  <text x="678" y="479" class="body ink">↔ STM32 USART10</text>
+  <text x="678" y="525" class="note muted">115200 · 9 字节帧 · CRC</text>
+  <text x="678" y="556" class="note muted">目标速度 / 使能 / 失能</text>
+  <text x="678" y="583" class="note muted">ACK 确认收到控制帧</text>
+
+  <!-- STM32: 接收、反馈、两条执行通道 -->
+  <rect x="994" y="281" width="510" height="92" fill="#acb9ad"/>
+  <path d="M985 270L1495 270L1495 365L985 365Z" fill="#fbf8f0"/>
+  <text x="1008" y="307" class="block ink">串口接收 / 协议解析</text>
+  <text x="1008" y="338" class="body muted">CRC 校验、速度解码、使能状态</text>
+
+  <rect x="994" y="440" width="235" height="100" fill="#acb9ad"/>
+  <path d="M985 430L1220 431L1220 532L986 530Z" fill="#fbf8f0"/>
+  <text x="1008" y="468" class="block ink">BMI088</text>
+  <text x="1008" y="500" class="body muted">陀螺仪 / 加速度计</text>
+
+  <rect x="1269" y="440" width="235" height="100" fill="#acb9ad"/>
+  <path d="M1260 430L1495 430L1495 530L1260 532Z" fill="#fbf8f0"/>
+  <text x="1282" y="468" class="block ink">姿态估计</text>
+  <text x="1282" y="500" class="body muted">世界偏航角速度</text>
+
+  <rect x="994" y="610" width="235" height="77" fill="#acb9ad"/>
+  <path d="M985 600L1220 601L1220 679L985 679Z" fill="#f5e6d1"/>
+  <text x="1008" y="635" class="block ink">偏航速度环</text>
+  <text x="1008" y="662" class="note muted">Vx − 测量速度 → PID</text>
+
+  <rect x="1269" y="610" width="235" height="77" fill="#acb9ad"/>
+  <path d="M1260 600L1495 600L1495 679L1260 679Z" fill="#f5e6d1"/>
+  <text x="1282" y="635" class="block ink">俯仰速度通道</text>
+  <text x="1282" y="662" class="note muted">Vy → MIT 速度指令</text>
+
+  <rect x="994" y="730" width="235" height="58" fill="#acb9ad"/>
+  <path d="M985 720L1220 720L1220 780L985 780Z" fill="#fbf8f0"/>
+  <text x="1007" y="757" class="body ink">偏航电机 · CAN 0x01</text>
+
+  <rect x="1269" y="730" width="235" height="58" fill="#acb9ad"/>
+  <path d="M1260 720L1495 720L1495 780L1260 780Z" fill="#fbf8f0"/>
+  <text x="1282" y="757" class="body ink">俯仰电机 · CAN 0x02</text>
+
+  <!-- 连线都在纸片边缘或模块之间走，避免穿过文字 -->
+  <path class="wire" d="M540 677H612V480H654"/>
+  <path class="wire" d="M889 445H922V315H985"/>
+  <path class="return" d="M985 346H945V563H889"/>
+  <text x="911" y="586" class="tiny" fill="#9b5842">ACK</text>
+  <path class="wire" d="M985 350H960V640H985"/>
+  <path class="wire" d="M1495 350H1517V640H1495"/>
+  <path class="sense" d="M1220 480H1260"/>
+  <path class="sense" d="M1377 532V566H1102V600"/>
+  <path class="wire" d="M1102 679V720"/>
+  <path class="wire" d="M1377 679V720"/>
+
+  <!-- 页脚：一句话说明闭环，不增加一条绕画面的长线 -->
+  <path d="M70 858H1538" stroke="#c9c3b7" stroke-width="1"/>
+  <text x="72" y="891" class="note muted">电机带动云台，摄像头在下一帧重新测量目标位置；虚线表示 IMU 测量反馈。</text>
+  <text x="1535" y="891" class="tiny muted" text-anchor="end">SYSTEM DIAGRAM  /  01</text>
+</svg>

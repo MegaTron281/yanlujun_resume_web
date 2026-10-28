@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="diagram-title diagram-desc">
+  <title id="diagram-title">室内赛智能车硬件系统框图</title>
+  <desc id="diagram-desc">电池经 TPS5430 双路 5V Buck、RT9013 线性稳压和 SY6280 外设电源开关为主控板供电，同时以 VIN 向电机驱动板供电。STC32G144K246 接入摄像头、编码器等接口，输出两路 PH 和 EN 控制信号，经 SN74HC125 缓冲、双路 DRV8701 和 MOS H 桥驱动两个电机。</desc>
+  <defs>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#bdac92"/></pattern>
+    <marker id="ink-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#352c25"/></marker>
+    <marker id="power-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#bd634c"/></marker>
+    <marker id="feedback-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#5d866f"/></marker>
+    <style>
+      .paper{fill:#fbf8f1}.ink{fill:#352c25}.muted{fill:#675b50}.line{fill:none;stroke:#352c25;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#ink-arrow)}
+      .power{fill:none;stroke:#bd634c;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#power-arrow)}
+      .power-join{fill:none;stroke:#bd634c;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+      .feedback{fill:none;stroke:#5d866f;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#feedback-arrow)}
+      .rule{fill:none;stroke:#352c25;stroke-width:2}.cut{stroke:#352c25;stroke-width:2.5;stroke-linejoin:round}.note{font:600 16px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#675b50}
+      .eyebrow{font:800 18px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;letter-spacing:2px;fill:#352c25}
+      .title{font:800 46px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#352c25}
+      .subtitle{font:600 21px Georgia,serif;fill:#675b50}
+      .section{font:800 23px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#352c25}
+      .section-en{font:600 17px Georgia,serif;fill:#675b50}
+      .box-title{font:800 22px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#352c25}
+      .box-en{font:600 17px Georgia,serif;fill:#675b50}
+      .box-detail{font:600 17px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#4d4239}
+      .chip{font:800 18px -apple-system,BlinkMacSystemFont,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#352c25}
+    </style>
+  </defs>
+
+  <rect class="paper" width="1600" height="960"/>
+  <rect x="29" y="27" width="1542" height="905" fill="none" stroke="#352c25" stroke-width="3"/>
+  <rect x="1344" y="31" width="194" height="99" fill="url(#dots)"/>
+  <path d="M51 28 L182 28 L177 52 L57 52 Z" fill="#ecd9ad" transform="rotate(-4 117 40)"/>
+  <text class="eyebrow" x="72" y="92">HARDWARE / 01</text>
+  <text class="title" x="72" y="145">室内赛智能车 · 硬件系统</text>
+  <text class="subtitle" x="74" y="177">Indoor competition car · Power, control and dual-motor drive</text>
+  <path class="rule" d="M72 195 H1528"/>
+
+  <!-- 电源分配 / Power distribution -->
+  <path class="cut" d="M62 222 L1535 218 L1540 422 L65 425 Z" fill="#efe2c9"/>
+  <path d="M876 215 L994 215 L1001 238 L878 237 Z" fill="#e6c980" transform="rotate(3 938 226)"/>
+  <text class="section" x="84" y="258">01  电源分配</text>
+  <text class="section-en" x="250" y="257">Power distribution</text>
+
+  <rect class="cut" x="85" y="295" width="218" height="97" fill="#f7f1e5"/>
+  <text class="box-title" x="107" y="333">电池输入</text>
+  <text class="box-en" x="107" y="361">Battery · VCCBAT</text>
+
+  <rect class="cut" x="370" y="295" width="268" height="97" fill="#f3cf9b"/>
+  <text class="box-title" x="390" y="333">TPS5430DDAR ×2</text>
+  <text class="box-en" x="390" y="361">5V Buck · system / servo</text>
+
+  <rect class="cut" x="710" y="280" width="235" height="52" fill="#f8f4ec"/>
+  <text class="chip" x="729" y="314">5V 系统 / System</text>
+  <rect class="cut" x="710" y="351" width="235" height="52" fill="#f8f4ec"/>
+  <text class="chip" x="729" y="385">5V 舵机 / Servo</text>
+
+  <rect class="cut" x="1019" y="280" width="231" height="52" fill="#d9e6dc"/>
+  <text class="chip" x="1036" y="314">RT9013 ×2 · 3.3V</text>
+  <rect class="cut" x="1019" y="351" width="231" height="52" fill="#ecc2b2"/>
+  <text class="chip" x="1036" y="385">SY6280 · 5V_EXT</text>
+
+  <rect class="cut" x="1308" y="294" width="192" height="94" fill="#f8f4ec"/>
+  <text class="box-title" x="1326" y="330">主控与外设</text>
+  <text class="box-en" x="1326" y="359">Logic / peripherals</text>
+
+  <path class="power" d="M303 343 H370"/>
+  <path class="power" d="M638 343 H676 V306 H710"/>
+  <path class="power" d="M676 343 V377 H710"/>
+  <path class="power" d="M945 306 H1019"/>
+  <path class="power" d="M945 306 H980 V377 H1019"/>
+  <path class="power" d="M1250 306 H1281 V341 H1308"/>
+  <path class="power-join" d="M1250 377 H1281 V341"/>
+
+  <!-- Main controller PCB -->
+  <path class="cut" d="M64 464 L668 460 L664 843 L59 842 Z" fill="#dce7df"/>
+  <path d="M106 454 L232 457 L228 480 L107 478 Z" fill="#e6c980" transform="rotate(-3 169 467)"/>
+  <text class="section" x="86" y="507">02  主控板</text>
+  <text class="section-en" x="229" y="506">Main controller PCB</text>
+
+  <rect class="cut" x="135" y="545" width="457" height="112" fill="#faf8f1"/>
+  <text class="box-title" x="159" y="585">STC32G144K246 核心板</text>
+  <text class="box-en" x="159" y="616">Core board · interfaces and control signals</text>
+
+  <rect class="cut" x="88" y="706" width="239" height="103" fill="#d6e4e5"/>
+  <text class="box-title" x="108" y="745">输入 / Sensing</text>
+  <text class="box-detail" x="108" y="775">摄像头 · 编码器 · IMU</text>
+  <text class="box-en" x="108" y="798">Camera · encoder · IMU</text>
+
+  <rect class="cut" x="365" y="706" width="261" height="103" fill="#efcabb"/>
+  <text class="box-title" x="385" y="745">外设 / Peripherals</text>
+  <text class="box-detail" x="385" y="775">舵机 · 激光 · 屏幕</text>
+  <text class="box-en" x="385" y="798">Servo · laser · display</text>
+
+  <path class="feedback" d="M208 706 V681 H244 V657"/>
+  <path class="line" d="M473 657 V682 H495 V706"/>
+
+  <!-- Motor driver PCB -->
+  <path class="cut" d="M704 461 L1543 463 L1538 843 L707 840 Z" fill="#f2e1d5"/>
+  <path d="M1339 455 L1465 458 L1462 481 L1340 478 Z" fill="#d7dfc7" transform="rotate(3 1402 468)"/>
+  <text class="section" x="730" y="507">03  双路电机驱动板</text>
+  <text class="section-en" x="985" y="506">Dual-channel motor driver PCB</text>
+
+  <rect class="cut" x="736" y="581" width="180" height="112" fill="#faf8f1"/>
+  <text class="box-title" x="754" y="622">SN74HC125</text>
+  <text class="box-en" x="754" y="652">Input buffer</text>
+  <text class="box-en" x="754" y="676">PH / EN × 2</text>
+
+  <rect class="cut" x="984" y="548" width="163" height="101" fill="#e7d5ec"/>
+  <text class="box-title" x="1002" y="586">DRV8701</text>
+  <text class="box-en" x="1002" y="615">Channel 1</text>
+  <rect class="cut" x="984" y="700" width="163" height="101" fill="#e7d5ec"/>
+  <text class="box-title" x="1002" y="738">DRV8701</text>
+  <text class="box-en" x="1002" y="767">Channel 2</text>
+
+  <rect class="cut" x="1195" y="548" width="171" height="101" fill="#e5c8ab"/>
+  <text class="box-title" x="1213" y="586">MOS H 桥</text>
+  <text class="box-en" x="1213" y="615">TPH1R403NL × 4</text>
+  <rect class="cut" x="1195" y="700" width="171" height="101" fill="#e5c8ab"/>
+  <text class="box-title" x="1213" y="738">MOS H 桥</text>
+  <text class="box-en" x="1213" y="767">TPH1R403NL × 4</text>
+
+  <rect class="cut" x="1412" y="559" width="103" height="78" fill="#faf8f1"/>
+  <text class="box-title" x="1431" y="595">电机 1</text>
+  <text class="box-en" x="1431" y="620">Motor 1</text>
+  <rect class="cut" x="1412" y="711" width="103" height="78" fill="#faf8f1"/>
+  <text class="box-title" x="1431" y="747">电机 2</text>
+  <text class="box-en" x="1431" y="772">Motor 2</text>
+
+  <path class="line" d="M592 601 H736"/>
+  <text class="note" x="606" y="581">PH / EN</text>
+  <path class="line" d="M916 637 H946 V598 H984"/>
+  <path class="line" d="M946 637 V750 H984"/>
+  <path class="line" d="M1147 599 H1195"/>
+  <path class="line" d="M1147 751 H1195"/>
+  <path class="line" d="M1366 599 H1412"/>
+  <path class="line" d="M1366 751 H1412"/>
+  <text class="note" x="740" y="821">VIN 直供 · LR8341A-T33 → DVDD · nSLEEP</text>
+
+  <!-- Separate battery feed to the motor board -->
+  <path class="power" d="M194 392 V439 H822 V462"/>
+  <rect x="430" y="425" width="261" height="28" fill="#fbf8f1"/>
+  <text class="note" x="440" y="445" fill="#bd634c">电池直供电机板 VIN</text>
+
+  <path class="rule" d="M72 877 H1528" stroke-dasharray="7 7"/>
+  <text class="note" x="74" y="912">按原理图与两块 PCB 归纳的功能关系 · 非逐引脚接线图</text>
+  <text class="note" x="1110" y="912">Functional overview · not pin-level wiring</text>
+</svg>

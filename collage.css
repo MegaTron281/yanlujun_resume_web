@@ -241,6 +241,16 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
 .project-highlight strong small { font-size: 18px; letter-spacing: 0; }
 .project-highlight p { margin: 0; font-size: 15px; line-height: 1.4; }
 .project-highlight p .en { font-size: 14px; }
+.system-diagram { position: relative; margin: 35px 0 38px; padding: 12px 12px 0; border: 2px solid var(--ink); background: #f7f0df; }
+.system-diagram::before { content: ""; position: absolute; z-index: 1; top: -13px; left: 44%; width: 100px; height: 23px; border-inline: 2px dashed #a08d68; background: #ecd9ad; rotate: 6deg; }
+.system-diagram-scroll { overflow-x: auto; border: 1px solid #a9a095; background: #f7f9fc; scrollbar-color: #9c825b transparent; }
+.system-diagram-scroll:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+.system-diagram-scroll img { display: block; width: 100%; height: auto; }
+.system-diagram figcaption { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 15px 9px 17px; }
+.system-diagram-title { font-size: 15px; font-weight: 800; }
+.system-diagram-title small, .system-diagram figcaption a small { display: block; margin-top: 4px; font: 14px/1.3 Georgia, serif; }
+.system-diagram figcaption a { flex: 0 0 auto; font-size: 14px; font-weight: 800; }
+.system-diagram figcaption a:hover { color: var(--red); }
 .project-links { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 29px; }
 .project-links a { display: inline-flex; align-items: center; gap: 20px; padding: 11px 14px; border: 2px solid var(--ink); background: #e5e9db; font-weight: 800; transition: translate .4s cubic-bezier(.16,1.5,.32,1), rotate .4s cubic-bezier(.16,1.5,.32,1); }
 .project-links a:nth-child(2) { background: #e9c99c; rotate: 1deg; }
@@ -414,6 +424,11 @@ html.motion-ready .reveal.is-visible { opacity: 1; transform: translate3d(0,0,0)
   .gallery-item img { height: 175px; }
   .gallery-item--feature img { height: 245px; }
   .gallery-item--motion img { height: 230px; }
+  .system-diagram-scroll img { width: 760px; max-width: none; }
+  .system-diagram figcaption { align-items: flex-start; }
+  .system-diagram-title { font-size: 13px; }
+  .system-diagram-title small, .system-diagram figcaption a small { font-size: 11px; }
+  .system-diagram figcaption a { font-size: 12px; }
   .project-highlight { flex-wrap: wrap; gap: 10px; padding: 17px 19px; }
   .project-highlight strong { font-size: 42px; }
   .project-highlight p { flex-basis: 100%; }
